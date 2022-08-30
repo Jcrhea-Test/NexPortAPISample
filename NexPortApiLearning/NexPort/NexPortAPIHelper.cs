@@ -39,6 +39,7 @@ namespace NexPortApiLearning.NexPort
             return checkTest;
         }
 
+        //Return an object with values from the json file.
         public PostRequestList.AuthPostRequest UserAuthFromNexportAPISettings()
         {
             string projectDirectoryPath = System.IO.Path.GetFullPath(@"..\..\..\..\");
