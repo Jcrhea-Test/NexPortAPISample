@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NexPortApiLearning.NexPort
+namespace NexPortApiLearning.NexPort.Post
 {
     public class PostResponseList
     {
-       
 
-        public class NexPortAuthResponse
+
+        public class PostAuthResponse
         {
             [JsonProperty("username")]
             public string Username { get; set; }
@@ -34,7 +34,5 @@ namespace NexPortApiLearning.NexPort
             [JsonProperty("groups")]
             public List<string> Groups { get; set; }
         }
-
-
     }
 }
