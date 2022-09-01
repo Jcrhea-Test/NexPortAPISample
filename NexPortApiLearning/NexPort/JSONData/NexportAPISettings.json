@@ -1,0 +1,10 @@
+{
+  "AuthRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/authentication/authenticate",
+    "username": "username",
+    "password": "password"
+  },
+  "GetClientRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/clients"
+  }
+}

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NexPortApiLearning.NexPort
+namespace NexPortApiLearning.NexPort.Post
 {
-    public class PostRequestList
+    public sealed class PostRequestList
     {
-        public class AuthPostRequest
+        public class PostAuthRequest
         {
-            [JsonProperty("authURL")]
+            [JsonProperty("url")]
             public string AuthUrl { get; set; }
 
             [JsonProperty("username")]
