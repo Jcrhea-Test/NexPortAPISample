@@ -9,8 +9,6 @@ namespace NexPortApiLearning.NexPort.Post
 {
     public class PostResponseList
     {
-
-
         public class PostAuthResponse
         {
             [JsonProperty("username")]

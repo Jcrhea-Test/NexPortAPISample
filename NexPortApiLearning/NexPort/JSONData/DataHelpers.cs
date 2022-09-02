@@ -16,7 +16,6 @@ namespace NexPortApiLearning.NexPort.JSONData
     {
         private static readonly string jsonDataPath = Path.GetFullPath(@"..\..\..\..\") + @"NexPortApiLearning\NexPort\JSONData\NexportAPISettings.json";
         private JObject jsonData = JObject.Parse(File.ReadAllText(jsonDataPath));
-
         //Return an object with values from the json file.
         public PostRequestList.PostAuthRequest NexportAuthUser()
         {

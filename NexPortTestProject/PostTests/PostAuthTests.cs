@@ -23,17 +23,14 @@ namespace NexPortTestProject.PostTests
             //Arrange
             DataHelpers helperMethod = new DataHelpers();
             PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
-
             //Act
             RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
             PostResponseList.PostAuthResponse authResponse = JsonConvert.DeserializeObject<PostResponseList.PostAuthResponse>(restResponse.Content);
-
             //Assert
             Assert.That(restResponse, Is.Not.Null);
             Assert.That((int)restResponse.StatusCode, Is.EqualTo(200));
             Assert.That(authResponse, Is.Not.Null);
             Assert.That(authResponse.Username, Is.EqualTo(testUserAuthInfo.Username));
-
         }
         [Test]
         /// Check to see if the Auth call responds with failure
@@ -42,16 +39,12 @@ namespace NexPortTestProject.PostTests
             //Arrange
             DataHelpers helperMethod = new DataHelpers();
             PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
-
             //Act
             RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, "username", "password");
-
             //Assert
             Assert.That(restResponse, Is.Not.Null);
             Assert.That((int)restResponse.StatusCode, Is.EqualTo(403));
         }
-
-
 
     }
 }
