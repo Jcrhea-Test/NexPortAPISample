@@ -11,8 +11,4 @@
     <PackageReference Include="RestSharp" Version="108.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NexPort\Get\" />
-  </ItemGroup>
-
 </Project>

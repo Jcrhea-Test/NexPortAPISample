@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NexPortApiLearning.NexPort.Helpers;
+using NexPortApiLearning.NexPort.JSONData;
 using NexPortApiLearning.NexPort.Post;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
@@ -12,7 +13,7 @@ using System.Text.Json.Serialization;
 
 namespace NexPortTestProject.PostTests
 {
-    public class Tests
+    public class PostTests
     {
 
         [Test]
@@ -20,16 +21,16 @@ namespace NexPortTestProject.PostTests
         public void PostAuthRequestPass()
         {
             //Arrange
-            NexPortAPIHelper helperMethod = new NexPortAPIHelper();
+            DataHelpers helperMethod = new DataHelpers();
             PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
 
             //Act
-            var testResponse = helperMethod.PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
-            PostResponseList.PostAuthResponse authResponse = JsonConvert.DeserializeObject<PostResponseList.PostAuthResponse>(testResponse.Content);
+            RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
+            PostResponseList.PostAuthResponse authResponse = JsonConvert.DeserializeObject<PostResponseList.PostAuthResponse>(restResponse.Content);
 
             //Assert
-            Assert.That(testResponse, Is.Not.Null);
-            Assert.That((int)testResponse.StatusCode, Is.EqualTo(200));
+            Assert.That(restResponse, Is.Not.Null);
+            Assert.That((int)restResponse.StatusCode, Is.EqualTo(200));
             Assert.That(authResponse, Is.Not.Null);
             Assert.That(authResponse.Username, Is.EqualTo(testUserAuthInfo.Username));
 
@@ -39,15 +40,15 @@ namespace NexPortTestProject.PostTests
         public void PostAuthRequestFail()
         {
             //Arrange
-            NexPortAPIHelper helperMethod = new NexPortAPIHelper();
+            DataHelpers helperMethod = new DataHelpers();
             PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
 
             //Act
-            var testResponse = helperMethod.PostAuthResponse(testUserAuthInfo.AuthUrl, "username", "password");
+            RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, "username", "password");
 
             //Assert
-            Assert.That(testResponse, Is.Not.Null);
-            Assert.That((int)testResponse.StatusCode, Is.EqualTo(403));
+            Assert.That(restResponse, Is.Not.Null);
+            Assert.That((int)restResponse.StatusCode, Is.EqualTo(403));
         }
 
 

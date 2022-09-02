@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
+using NexPortApiLearning.NexPort.Get;
+using NexPortApiLearning.NexPort.JSONData;
 using NexPortApiLearning.NexPort.Post;
 using RestSharp;
 using System;
@@ -39,16 +41,14 @@ namespace NexPortApiLearning.NexPort.Helpers
             RestResponse nexportResponse = nexportClient.ExecuteGet(nexportRequest);
             return nexportResponse;
         }
-        //Return an object with values from the json file.
-        public PostRequestList.PostAuthRequest NexportAuthUser()
-        {
-            string projectDirectoryPath = Path.GetFullPath(@"..\..\..\..\");
-            string settingsFile = projectDirectoryPath + @"NexPortApiLearning\NexPort\JSONData\NexportAPISettings.json";
-            PostRequestList.PostAuthRequest userInfo = new PostRequestList.PostAuthRequest();
-            JObject nexportJSONData = JObject.Parse(File.ReadAllText(settingsFile));
-            userInfo = JsonConvert.DeserializeObject<PostRequestList.PostAuthRequest>(nexportJSONData["AuthRequest"].ToString());
-            return userInfo;
-        }
 
+        public string getAuthToken()
+        {
+            DataHelpers dataHelper = new DataHelpers();
+            PostRequestList.PostAuthRequest testUserAuthInfo = dataHelper.NexportAuthUser();
+            RestResponse authResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
+            string token = authResponse.Headers.Where(x => x.Name == "accessToken").FirstOrDefault().Value.ToString();
+            return token;
+        }
     }
 }
