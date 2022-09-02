@@ -41,7 +41,6 @@ namespace NexPortApiLearning.NexPort.Helpers
             RestResponse nexportResponse = nexportClient.ExecuteGet(nexportRequest);
             return nexportResponse;
         }
-
         public string getAuthToken()
         {
             DataHelpers dataHelper = new DataHelpers();
