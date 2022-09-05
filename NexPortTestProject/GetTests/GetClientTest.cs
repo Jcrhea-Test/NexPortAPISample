@@ -15,20 +15,20 @@ using System.Text.Json.Serialization;
 
 namespace NexPortTestProject.GetTests
 {
-    public class GetTests
+    public class GetClientTests
     {
 
         [Test]
-        /// A passing test for Get Client API call
+        // A passing test for Get Client API call
         public void GetClientTestPass()
         {
             //Arrange
             DataHelpers dataHelper = new DataHelpers();
             NexPortAPIHelper nexportAPIHelper = new NexPortAPIHelper();
-            GetRequestList.GetClientRequest testUserClientInfo = dataHelper.NexportGetClientData();
+            GetRequestList.GetClientRequest testUserClientInfo = dataHelper.NexportGetClientInfo();
             //Act
             string authToken = nexportAPIHelper.getAuthToken();
-            RestResponse getClientResponse = new NexPortAPIHelper().GetClientAPIResopnse(testUserClientInfo.GetClientUrl, authToken);
+            RestResponse getClientResponse = new NexPortAPIHelper().NexportGetAPI(testUserClientInfo.GetClientUrl, authToken, testUserClientInfo.VersionNumber);
             JArray listResponse = JArray.Parse(getClientResponse.Content);
             var testResponse = listResponse.Where(responseItem => (string)responseItem["id"] == "avrbml").FirstOrDefault();
             //Assert
@@ -37,17 +37,17 @@ namespace NexPortTestProject.GetTests
             Assert.That(testResponse["createdBy"].ToString(), Is.EqualTo("tjakobsze"));
         }
         [Test]
-        /// Check for error code 401 if token is missing
+        /// Check for error code 500 if token is missing
         public void GetClientTestsFail()
         {
             //Arrange
             DataHelpers dataHelper = new DataHelpers();
             NexPortAPIHelper nexportAPIHelper = new NexPortAPIHelper();
-            GetRequestList.GetClientRequest testUserClientInfo = dataHelper.NexportGetClientData();
+            GetRequestList.GetClientRequest testUserClientInfo = dataHelper.NexportGetClientInfo();
             //Act
-            RestResponse getClientResponse = new NexPortAPIHelper().GetClientAPIResopnse(testUserClientInfo.GetClientUrl, "NoToken");
+            RestResponse getClientResponse = new NexPortAPIHelper().NexportGetAPI(testUserClientInfo.GetClientUrl, "", testUserClientInfo.VersionNumber);
             //Assert
-            Assert.AreEqual((int)getClientResponse.StatusCode, 401);
+            Assert.That((int)getClientResponse.StatusCode, Is.EqualTo(500));
         }
 
 

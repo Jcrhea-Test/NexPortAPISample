@@ -22,15 +22,15 @@ namespace NexPortTestProject.PostTests
         {
             //Arrange
             DataHelpers helperMethod = new DataHelpers();
-            PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
+            PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUserInfo();
             //Act
-            RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
+            RestResponse restResponse = new NexPortAPIHelper().NexportPostAPI(testUserAuthInfo.AuthUrl, testUserAuthInfo.JsonBody.ToString(), testUserAuthInfo.VersionNumber);
             PostResponseList.PostAuthResponse authResponse = JsonConvert.DeserializeObject<PostResponseList.PostAuthResponse>(restResponse.Content);
             //Assert
             Assert.That(restResponse, Is.Not.Null);
             Assert.That((int)restResponse.StatusCode, Is.EqualTo(200));
             Assert.That(authResponse, Is.Not.Null);
-            Assert.That(authResponse.Username, Is.EqualTo(testUserAuthInfo.Username));
+            Assert.That(authResponse.Username, Is.EqualTo(testUserAuthInfo.JsonBody["username"].ToString()));
         }
         [Test]
         /// Check to see if the Auth call responds with failure
@@ -38,9 +38,12 @@ namespace NexPortTestProject.PostTests
         {
             //Arrange
             DataHelpers helperMethod = new DataHelpers();
-            PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUser();
+            PostRequestList.PostAuthRequest testUserAuthInfo = helperMethod.NexportAuthUserInfo();
+            testUserAuthInfo.JsonBody["username"] = "username";
+            testUserAuthInfo.JsonBody["password"] = "password";
+
             //Act
-            RestResponse restResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, "username", "password");
+            RestResponse restResponse = new NexPortAPIHelper().NexportPostAPI(testUserAuthInfo.AuthUrl, testUserAuthInfo.JsonBody.ToString(), testUserAuthInfo.VersionNumber);
             //Assert
             Assert.That(restResponse, Is.Not.Null);
             Assert.That((int)restResponse.StatusCode, Is.EqualTo(403));
