@@ -13,6 +13,16 @@ namespace NexPortApiLearning.NexPort.Get
         {
             [JsonProperty("url")]
             public string GetClientUrl { get; set; }
+            [JsonProperty("version")]
+            public string VersionNumber { get; set; }
         }
+        public class GetEmployeeRequest
+        {
+            [JsonProperty("url")]
+            public string GetEmployeeUrl  { get; set; }
+            [JsonProperty("version")]
+            public string VersionNumber { get; set; }
+        }
+
     }
 }

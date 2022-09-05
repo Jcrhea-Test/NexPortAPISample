@@ -14,38 +14,36 @@ namespace NexPortApiLearning.NexPort.Helpers
 {
     public class NexPortAPIHelper
     {
-        public RestResponse PostAuthResponse(string url, string username, string password)
+        //Note: Could break this down with params
+        //Params: (url, body, version) for Post Request
+        public RestResponse NexportPostAPI(string url, JToken jsonBody, string versionNumber)
         {
-            PostRequestList.PostAuthRequest userInfo = new PostRequestList.PostAuthRequest
-            {
-                Username = username,
-                Password = password
-            };
-            string requestBody = JsonConvert.SerializeObject(userInfo);
+            string stringJsonBody = jsonBody.ToString();
             RestClient nexportClient = new RestClient(url);
             RestRequest nexportRequest = new RestRequest()
-                .AddJsonBody(requestBody)
+                .AddJsonBody(stringJsonBody)
                 .AddHeader("Content-Type", "application/json")
-                .AddHeader("Version", "2");
+                .AddHeader("Version", versionNumber);
             //Using Latest version of RestSharp, IRestResponse is depracted on this verison.
             RestResponse nexportResponse = nexportClient.ExecutePost(nexportRequest);
             return nexportResponse;
         }
-        public RestResponse GetClientAPIResopnse(string url, string token)
+        public RestResponse NexportGetAPI(string url, string token, string versionNumber)
         {
             RestClient nexportClient = new RestClient(url);
             RestRequest nexportRequest = new RestRequest()
                 .AddHeader("X-Authorization", token)
                 .AddHeader("tenantId", "nexient")
-                .AddHeader("Version", "1");
+                .AddHeader("Version", versionNumber);
             RestResponse nexportResponse = nexportClient.ExecuteGet(nexportRequest);
             return nexportResponse;
         }
+
         public string getAuthToken()
         {
             DataHelpers dataHelper = new DataHelpers();
-            PostRequestList.PostAuthRequest testUserAuthInfo = dataHelper.NexportAuthUser();
-            RestResponse authResponse = new NexPortAPIHelper().PostAuthResponse(testUserAuthInfo.AuthUrl, testUserAuthInfo.Username, testUserAuthInfo.Password);
+            PostRequestList.PostAuthRequest testUserAuthInfo = dataHelper.NexportAuthUserInfo();
+            RestResponse authResponse = NexportPostAPI(testUserAuthInfo.AuthUrl, testUserAuthInfo.JsonBody, testUserAuthInfo.VersionNumber);
             string token = authResponse.Headers.Where(x => x.Name == "accessToken").FirstOrDefault().Value.ToString();
             return token;
         }

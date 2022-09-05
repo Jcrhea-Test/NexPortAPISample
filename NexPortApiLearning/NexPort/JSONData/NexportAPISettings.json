@@ -1,10 +1,18 @@
 {
   "AuthRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/authentication/authenticate",
-    "username": "username",
-    "password": "password"
+    "body": {
+      "username": "jrhea",
+      "password": "Gift3Smell)"
+    },
+    "version": "2"
   },
   "GetClientRequest": {
-    "url": "http://nxpdev.corp.nexient.com/api/clients"
+    "url": "http://nxpdev.corp.nexient.com/api/clients",
+    "version": "1"
+  },
+  "GetEmployeeRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/employees",
+    "version": "2"
   }
 }

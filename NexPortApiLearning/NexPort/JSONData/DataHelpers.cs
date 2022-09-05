@@ -17,15 +17,21 @@ namespace NexPortApiLearning.NexPort.JSONData
         private static readonly string jsonDataPath = Path.GetFullPath(@"..\..\..\..\") + @"NexPortApiLearning\NexPort\JSONData\NexportAPISettings.json";
         private JObject jsonData = JObject.Parse(File.ReadAllText(jsonDataPath));
         //Return an object with values from the json file.
-        public PostRequestList.PostAuthRequest NexportAuthUser()
+        public PostRequestList.PostAuthRequest NexportAuthUserInfo()
         {
             PostRequestList.PostAuthRequest userInfo = JsonConvert.DeserializeObject<PostRequestList.PostAuthRequest>(jsonData["AuthRequest"].ToString());
             return userInfo;
         }
-        public GetRequestList.GetClientRequest NexportGetClientData()
+        public GetRequestList.GetClientRequest NexportGetClientInfo()
         {
-            GetRequestList.GetClientRequest _getClientRequest = JsonConvert.DeserializeObject<GetRequestList.GetClientRequest>(jsonData["GetClientRequest"].ToString());
-            return _getClientRequest;
+            GetRequestList.GetClientRequest getClientRequest = JsonConvert.DeserializeObject<GetRequestList.GetClientRequest>(jsonData["GetClientRequest"].ToString());
+            return getClientRequest;
+        }
+
+        public GetRequestList.GetEmployeeRequest NexportGetEmployeeInfo()
+        {
+            GetRequestList.GetEmployeeRequest getEmployeeRequest = JsonConvert.DeserializeObject<GetRequestList.GetEmployeeRequest>(jsonData["GetEmployeeRequest"].ToString());
+            return getEmployeeRequest;
         }
     }
 }
