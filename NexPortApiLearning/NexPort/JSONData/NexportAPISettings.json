@@ -2,8 +2,8 @@
   "AuthRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/authentication/authenticate",
     "body": {
-      "username": "jrhea",
-      "password": "Gift3Smell)"
+      "username": "username",
+      "password": "password"
     },
     "version": "2"
   },
