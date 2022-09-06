@@ -30,7 +30,7 @@ namespace NexPortTestProject.GetTests
             string authToken = nexportAPIHelper.getAuthToken();
             RestResponse getClientResponse = new NexPortAPIHelper().NexportGetAPI(testUserClientInfo.GetClientUrl, authToken, testUserClientInfo.VersionNumber);
             JArray listResponse = JArray.Parse(getClientResponse.Content);
-            var testResponse = listResponse.Where(responseItem => (string)responseItem["id"] == "avrbml").FirstOrDefault();
+            JToken testResponse = listResponse.Where(responseItem => (string)responseItem["id"] == "avrbml").FirstOrDefault();
             //Assert
             Assert.That(getClientResponse, Is.Not.Null);
             Assert.That((int)getClientResponse.StatusCode, Is.EqualTo(200));
