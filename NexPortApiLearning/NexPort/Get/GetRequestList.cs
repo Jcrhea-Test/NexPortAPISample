@@ -31,5 +31,13 @@ namespace NexPortApiLearning.NexPort.Get
             public string VersionNumber { get; set; }
         }
 
+        public class GetProfilesRequest
+        {
+            [JsonProperty("url")]
+            public string ProfileUrl { get; set; }
+            [JsonProperty("version")]
+            public string VersionNumber { get; set; }
+        }
+
     }
 }

@@ -18,5 +18,9 @@
   "GetEventsRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/events",
     "version": "1"
+  },
+  "GetProfilesRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/profiles",
+    "version": "1"
   }
 }
