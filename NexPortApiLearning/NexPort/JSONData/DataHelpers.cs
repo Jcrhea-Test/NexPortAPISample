@@ -33,5 +33,10 @@ namespace NexPortApiLearning.NexPort.JSONData
             GetRequestList.GetEmployeeRequest getEmployeeRequest = JsonConvert.DeserializeObject<GetRequestList.GetEmployeeRequest>(jsonData["GetEmployeeRequest"].ToString());
             return getEmployeeRequest;
         }
+        public GetRequestList.GetEventsRequest NexportGetEventsInfo()
+        {
+            GetRequestList.GetEventsRequest getEventRequest = JsonConvert.DeserializeObject<GetRequestList.GetEventsRequest>(jsonData["GetEventsRequest"].ToString());
+            return getEventRequest;
+        }
     }
 }

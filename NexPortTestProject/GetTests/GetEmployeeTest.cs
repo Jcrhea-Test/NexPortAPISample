@@ -26,7 +26,7 @@ namespace NexPortTestProject.GetTests
             string authToken = nexportAPIHelper.getAuthToken();
             RestResponse getEmployeeResponse = new NexPortAPIHelper().NexportGetAPI(testEmployeeInfo.GetEmployeeUrl, authToken, testEmployeeInfo.VersionNumber);
             JArray listResponse = JArray.Parse(getEmployeeResponse.Content);
-            var testResponse = listResponse.Where(responseItem => (string)responseItem["id"] == "iegmby").FirstOrDefault();
+            JToken testResponse = listResponse.Where(responseItem => (string)responseItem["id"] == "iegmby").FirstOrDefault();
             //Assert
             Assert.That(getEmployeeResponse, Is.Not.Null);
             Assert.That((int)getEmployeeResponse.StatusCode, Is.EqualTo(200));

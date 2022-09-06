@@ -14,5 +14,10 @@
   "GetEmployeeRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/employees",
     "version": "2"
+  },
+  "GetEventsRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/events",
+    "version": "1"
+
   }
 }
