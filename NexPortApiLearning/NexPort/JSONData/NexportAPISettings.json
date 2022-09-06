@@ -22,5 +22,9 @@
   "GetProfilesRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/profiles",
     "version": "1"
+  },
+  "GetProjectsRequest": {
+    "url": "http://nxpdev.corp.nexient.com/api/projects",
+    "version": "1"
   }
 }

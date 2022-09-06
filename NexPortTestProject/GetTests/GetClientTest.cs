@@ -15,7 +15,7 @@ using System.Text.Json.Serialization;
 
 namespace NexPortTestProject.GetTests
 {
-    public class GetClientTests
+    internal class GetClientTests
     {
 
         [Test]
