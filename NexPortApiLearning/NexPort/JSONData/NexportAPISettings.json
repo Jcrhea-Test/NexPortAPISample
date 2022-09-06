@@ -18,6 +18,5 @@
   "GetEventsRequest": {
     "url": "http://nxpdev.corp.nexient.com/api/events",
     "version": "1"
-
   }
 }
