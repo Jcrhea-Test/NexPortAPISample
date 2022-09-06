@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace NexPortTestProject.GetTests
 {
-    public class GetEmployeeTests
+    internal class GetEmployeeTests
     {
         [Test]
         // A passing test for Get Client API call

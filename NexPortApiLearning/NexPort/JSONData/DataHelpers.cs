@@ -43,5 +43,10 @@ namespace NexPortApiLearning.NexPort.JSONData
             GetRequestList.GetProfilesRequest getProfileRequest = JsonConvert.DeserializeObject<GetRequestList.GetProfilesRequest>(jsonData["GetProfilesRequest"].ToString());
             return getProfileRequest;
         }
+        public GetRequestList.GetProjectsRequest NexportGetProjectsInfo()
+        {
+            GetRequestList.GetProjectsRequest getProfileRequest = JsonConvert.DeserializeObject<GetRequestList.GetProjectsRequest>(jsonData["GetProjectsRequest"].ToString());
+            return getProfileRequest;
+        }
     }
 }
