@@ -27,7 +27,6 @@ namespace NexPortApiLearning.NexPort.JSONData
             GetRequestList.GetClientRequest getClientRequest = JsonConvert.DeserializeObject<GetRequestList.GetClientRequest>(jsonData["GetClientRequest"].ToString());
             return getClientRequest;
         }
-
         public GetRequestList.GetEmployeeRequest NexportGetEmployeeInfo()
         {
             GetRequestList.GetEmployeeRequest getEmployeeRequest = JsonConvert.DeserializeObject<GetRequestList.GetEmployeeRequest>(jsonData["GetEmployeeRequest"].ToString());

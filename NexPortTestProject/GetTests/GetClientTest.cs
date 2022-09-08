@@ -17,7 +17,6 @@ namespace NexPortTestProject.GetTests
 {
     internal class GetClientTests
     {
-
         [Test]
         // A passing test for Get Client API call
         public void GetClientTestPass()
@@ -37,7 +36,7 @@ namespace NexPortTestProject.GetTests
             Assert.That(testResponse["createdBy"].ToString(), Is.EqualTo("tjakobsze"));
         }
         [Test]
-        /// Check for error code 500 if token is missing
+        // Check for error code 500 if token is missing
         public void GetClientTestsFail()
         {
             //Arrange
@@ -49,8 +48,5 @@ namespace NexPortTestProject.GetTests
             //Assert
             Assert.That((int)getClientResponse.StatusCode, Is.EqualTo(500));
         }
-
-
-
     }
 }
